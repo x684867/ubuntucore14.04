@@ -20,6 +20,7 @@ To Do:
 
 ChangeList:
 -----------
+31 Oct 2014: Created /usr/bin/generateSelfSigned script as part of image.
 31 Oct 2014: Install apparmor profiles.
 30 Oct 2014: udev was broken in a joomla build derived from this image.
              To fix the problem, I'm breaking udev perm. and using a
