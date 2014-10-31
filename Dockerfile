@@ -6,7 +6,6 @@ FROM scratch
 ADD files/base-ubuntu14.04x64.tar.gz /
 
 ENV DEBIAN_FRONTEND noninteractive;
-ENV APTOPT "-y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold --force-yes --yes --fix-missing"
 RUN apt-get update --fix-missing -y && \
     apt-get upgrade -y && \
     ln -sf /bin/bash /bin/sh && \
