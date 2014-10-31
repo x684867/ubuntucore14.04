@@ -15,6 +15,6 @@ RUN apt-get update --fix-missing -y && \
     dd if=/dev/zero of=/swap bs=2048 count=1048576 && \
     mkswap /swap && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab && \
-    apt-get install -y wget -y
+    apt-get install wget -y
 
 CMD ["/bin/bash"]
