@@ -22,6 +22,18 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
     ln -s /usr/bin/true /sbin/initctl && \
     chmod +x /usr/bin/fake-udev && \
     ln -sf /usr/bin/fake-udev /etc/init.d/udev
+RUN openssl req \
+            -nodes \
+            -newkey rsa:2048 \
+            -keyout /etc/ssl/private/selfsigned.key \
+            -out /etc/ssl/selfsigned.csr \
+            -subj "/C=US/ST=TX/L=Austin/O=scaldwell/OU=Ops/CN=localhost"  &> /dev/null && \
+    openssl x509 \
+            -req \
+            -days 365 \
+            -in /etc/ssl/selfsigned.csr \
+            -signkey /etc/ssl/private/selfsigned.key \
+            -out /etc/ssl/certs/selfsigned.crt &> /dev/null
 
 
 CMD ["/bin/bash"]
