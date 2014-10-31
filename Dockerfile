@@ -49,6 +49,9 @@ RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
     rm /etc/issue /etc/issue.net &> /dev/null; \
     rm /etc/motd /etc/update-motd.d/* &> /dev/null; \
     exit 0
- 
+
+RUN apt-get update --fix-missing -y && \
+    apt-get install apparmor-profiles -y
+
 
 CMD ["/bin/bash"]

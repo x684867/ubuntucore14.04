@@ -14,7 +14,7 @@ Parameters
 
 To Do:
 ------
-(1) Add Tripwire.
+(1) Configure AppArmor.
 (2) Add Better Logging.
 
 
