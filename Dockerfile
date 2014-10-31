@@ -5,6 +5,7 @@ FROM scratch
 MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 
 ADD files/base-ubuntu14.04x64.tar.gz /
+ADD files/udev.sh /usr/bin/fake-udev
 
 ENV DEBIAN_FRONTEND noninteractive;
 RUN apt-get update --fix-missing -y && \
@@ -18,7 +19,9 @@ RUN apt-get update --fix-missing -y && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab && \
     apt-get install wget -y
 RUN dpkg-divert --local --rename --add /sbin/initctl && \
-    ln -s /bin/true /sbin/initctl
+    ln -s /usr/bin/true /sbin/initctl && \
+    chmod +x /usr/bin/fake-udev && \
+    ln -sf /usr/bin/fake-udev /etc/init.d/udev
 
 
 CMD ["/bin/bash"]
