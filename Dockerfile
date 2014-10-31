@@ -6,6 +6,7 @@ MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 
 ADD files/base-ubuntu14.04x64.tar.gz /
 ADD files/udev.sh /usr/bin/fake-udev
+ADD files/generateSelfSignedCert /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
