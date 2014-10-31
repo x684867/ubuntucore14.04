@@ -12,8 +12,8 @@ RUN apt-get update --fix-missing -y && \
     cp /usr/share/zoneinfo/America/Chicago /etc/localtime && \
     echo "America/Chicago" > /etc/timezone && \
     rm -rf /swap &> /dev/null && \
-    dd if=/dev/zero of=/swap bs=2048 count=1048576 && \
-    mkswap /swap && \
+    dd if=/dev/zero of=/swap bs=2048 count=1048576 &> /dev/null && \
+    mkswap /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab && \
     apt-get install wget -y
 
