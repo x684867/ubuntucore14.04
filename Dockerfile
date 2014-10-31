@@ -9,7 +9,6 @@ ADD files/udev.sh /usr/bin/fake-udev
 
 ENV DEBIAN_FRONTEND noninteractive
 
-
 RUN dpkg-divert --local --rename --add /sbin/initctl && \
     ln -s /usr/bin/true /sbin/initctl && \
     chmod +x /usr/bin/fake-udev && \
@@ -27,7 +26,6 @@ RUN rm -rf /swap &> /dev/null && \
     dd if=/dev/zero of=/swap bs=1024 count=1048576 &> /dev/null && \
     mkswap /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab
-    
 
 RUN openssl req \
             -nodes \
