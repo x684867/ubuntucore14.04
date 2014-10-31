@@ -1,8 +1,8 @@
 # Docker Container for Ubuntu 14.04 x64
 # (c) 2014 EdgeCase, Inc.  sam@edgecase.io
 # 
-MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 FROM scratch
+MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 ADD files/base-ubuntu14.04x64.tar.gz /
 
 ENV DEBIAN_FRONTEND noninteractive;
