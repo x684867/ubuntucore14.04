@@ -17,5 +17,8 @@ RUN apt-get update --fix-missing -y && \
     mkswap /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab && \
     apt-get install wget -y
+RUN dpkg-divert --local --rename --add /sbin/initctl && \
+    ln -s /bin/true /sbin/initctl
+
 
 CMD ["/bin/bash"]
