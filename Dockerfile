@@ -29,7 +29,7 @@ RUN rm -rf /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab
 
 RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
-    for i in disk dialout fax voice cdrom floppy tape audio backup operator staff; do groupdel $i &> /dev/null; done; \
+    for i in disk dialout fax voice cdrom floppy tape audio backup operator; do groupdel $i &> /dev/null; done; \
     rm -rf /usr/games/ &> /dev/null; \
     rm -rf /usr/local/games &> /dev/null; \
     rm /etc/issue /etc/issue.net &> /dev/null; \
