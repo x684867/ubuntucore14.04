@@ -12,8 +12,18 @@ Parameters
     than on process failure.
 (4) Timezone is set to CDT.
 
+To Do:
+------
+(1) Add Tripwire.
+(2) Add Better Logging.
+
+
 ChangeList:
 -----------
 30 Oct 2014: udev was broken in a joomla build derived from this image.
              To fix the problem, I'm breaking udev perm. and using a
              forced exit 0 in the init script so apt-get will not break.
+
+30 Oct 2014: Removing users (e.g. games) and groups that are not used in
+             my environments.  [NOTE: these are app boxes and not your
+             usual linux machines.]

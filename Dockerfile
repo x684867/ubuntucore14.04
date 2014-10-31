@@ -34,6 +34,12 @@ RUN openssl req \
             -in /etc/ssl/selfsigned.csr \
             -signkey /etc/ssl/private/selfsigned.key \
             -out /etc/ssl/certs/selfsigned.crt &> /dev/null
-
+RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
+    for i in disk dialout fax voice cdrom floppy tape audio backup operator staff; do groupdel $i &> /dev/null; done; \
+    rm -rf /usr/games/ &> /dev/null; \
+    rm -rf /usr/local/games &> /dev/null; \
+    rm /etc/issue /etc/issue.net &> /dev/null; \
+    rm /etc/motd /etc/update-motd.d/* &> /dev/null
+ 
 
 CMD ["/bin/bash"]
