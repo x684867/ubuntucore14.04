@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# generateSelfSignedCert
+# (c) 2014 Sam Caldwell.  Public Domain
+#
+KEYFILE=/etc/ssl/private/selfsigned.key
+CSRFILE=/etc/ssl/selfsigned.csr
+CRTFILE=/etc/ssl/certs/selfsigned.crt
+SUBJ="/C=US/ST=TX/L=Austin/O=Sam Caldwell/OU=Public Domain/CN=localhost"
+
+openssl req \
+        -nodes \
+        -newkey rsa:2048 \
+        -keyout ${KEYFILE} \
+        -out /etc/ssl/selfsigned.csr \
+        -subj "${SUBJ}" &>/dev/null
+
+openssl x509 \
+    -req \
+    -days 365 \
+    -in ${CSRFILE} \
+    -signkey ${KEYFILE} \
+    -out ${CRTFILE} &> /dev/null

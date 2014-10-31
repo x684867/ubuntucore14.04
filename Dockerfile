@@ -27,18 +27,7 @@ RUN rm -rf /swap &> /dev/null && \
     mkswap /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab
 
-RUN openssl req \
-            -nodes \
-            -newkey rsa:2048 \
-            -keyout /etc/ssl/private/selfsigned.key \
-            -out /etc/ssl/selfsigned.csr \
-            -subj "/C=US/ST=TX/L=Austin/O=scaldwell/OU=Ops/CN=localhost"  &> /dev/null && \
-    openssl x509 \
-            -req \
-            -days 365 \
-            -in /etc/ssl/selfsigned.csr \
-            -signkey /etc/ssl/private/selfsigned.key \
-            -out /etc/ssl/certs/selfsigned.crt &> /dev/null
+RUN /usr/bin/generateSelfSignedCert
 
 RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
     for i in disk dialout fax voice cdrom floppy tape audio backup operator staff; do groupdel $i &> /dev/null; done; \
@@ -50,6 +39,5 @@ RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
 
 RUN apt-get update --fix-missing -y && \
     apt-get install apparmor-profiles -y
-
 
 CMD ["/bin/bash"]
