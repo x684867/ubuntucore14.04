@@ -13,11 +13,18 @@ openssl req \
         -newkey rsa:2048 \
         -keyout ${KEYFILE} \
         -out /etc/ssl/selfsigned.csr \
-        -subj "${SUBJ}" &>/dev/null
+        -subj "${SUBJ}" &>/dev/null || exit 1
 
 openssl x509 \
     -req \
     -days 365 \
     -in ${CSRFILE} \
     -signkey ${KEYFILE} \
-    -out ${CRTFILE} &> /dev/null
+    -out ${CRTFILE} &> /dev/null || exit 1
+
+echo " "
+echo "Generated self-signed certificate"
+echo "   KEYFILE: ${KEYFILE}"
+echo "   CSRFILE: ${CSRFILE}"
+echo "   CRTFILE: ${CRTFILE}"
+echo " "

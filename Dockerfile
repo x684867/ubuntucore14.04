@@ -28,8 +28,6 @@ RUN rm -rf /swap &> /dev/null && \
     mkswap /swap &> /dev/null && \
     echo "/swap swap swap defaults,noauto 0 0" >> /etc/fstab
 
-RUN /usr/bin/generateSelfSignedCert
-
 RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
     for i in disk dialout fax voice cdrom floppy tape audio backup operator staff; do groupdel $i &> /dev/null; done; \
     rm -rf /usr/games/ &> /dev/null; \
@@ -40,5 +38,7 @@ RUN for i in games news irc backup; do userdel -r $i &> /dev/null; done; \
 
 RUN apt-get update --fix-missing -y && \
     apt-get install apparmor-profiles -y
+
+RUN /usr/bin/generateSelfSignedCert
 
 CMD ["/bin/bash"]
