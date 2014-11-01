@@ -7,6 +7,7 @@ MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 ADD files/base-ubuntu14.04x64.tar.gz /
 ADD files/udev.sh /usr/bin/fake-udev
 ADD files/generateSelfSignedCert /usr/bin/
+ADD files/installSSHClient /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -19,6 +20,8 @@ RUN apt-get update --fix-missing -y && \
     apt-get upgrade -y && \
     apt-get install wget -y && \
     ln -sf /bin/bash /bin/sh
+
+RUN /usr/bin/installSSHClient
 
 RUN cp /usr/share/zoneinfo/America/Chicago /etc/localtime && \
     echo "America/Chicago" > /etc/timezone
