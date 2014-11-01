@@ -14,7 +14,7 @@ ADD files/installSSHClient /usr/bin/
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN dpkg-divert --local --rename --add /sbin/initctl && \
-    ln -s /usr/bin/true /sbin/initctl && \
+    ln -sf /usr/bin/true /sbin/initctl && \
     chmod +x /usr/bin/fake-udev && \
     ln -sf /usr/bin/fake-udev /etc/init.d/udev
 
