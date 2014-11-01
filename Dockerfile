@@ -1,10 +1,12 @@
 # Docker Container for Ubuntu 14.04 x64
 # (c) 2014 EdgeCase, Inc.  sam@edgecase.io
 # 
-FROM scratch
+#FROM scratch
+FROM ubuntu:14.04
 MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 
-ADD files/base-ubuntu14.04x64.tar.gz /
+#Use with FROM scratch
+#ADD files/base-ubuntu14.04x64.tar.gz /
 ADD files/udev.sh /usr/bin/fake-udev
 ADD files/generateSelfSignedCert /usr/bin/
 ADD files/installSSHClient /usr/bin/
