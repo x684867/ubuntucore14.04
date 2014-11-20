@@ -20,7 +20,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 
 RUN apt-get update --fix-missing -y && \
     apt-get upgrade -y && \
-    apt-get install wget -y && \
+    apt-get install wget wget -y && \
     ln -sf /bin/bash /bin/sh
 
 RUN /usr/bin/installSSHClient
