@@ -1,0 +1,14 @@
+#!/bin/bash -e
+#
+# installSSHClient
+# (c) 2014 Sam Caldwell.  Public Domain.
+#
+# Install and configure the ssh client
+#
+which ssh || {
+	echo "installing SSH client"
+	apt-get update --fix-missing -y && \
+	apt-get install openssh-client -y || exit 1
+	which ssh || exit 1
+}
+exit 0

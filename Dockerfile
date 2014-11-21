@@ -5,22 +5,18 @@
 FROM ubuntu:14.04
 MAINTAINER Sam Caldwell <mail@samcaldwell.net>
 
-#Use with FROM scratch
-#ADD files/base-ubuntu14.04x64.tar.gz /
-ADD files/udev.sh /usr/bin/fake-udev
-ADD files/generateSelfSignedCert /usr/bin/
-ADD files/installSSHClient /usr/bin/
+COPY files/usr/bin/ /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN dpkg-divert --local --rename --add /sbin/initctl && \
     ln -sf /usr/bin/true /sbin/initctl && \
-    chmod +x /usr/bin/fake-udev && \
-    ln -sf /usr/bin/fake-udev /etc/init.d/udev
+    chmod +x /usr/bin/udev.sh && \
+    ln -sf /usr/bin/udev.sh /etc/init.d/udev
 
 RUN apt-get update --fix-missing -y && \
     apt-get upgrade -y && \
-    apt-get install wget curl ufw -y && \
+    apt-get install curl wget openssh-client openssl -y && \ 
     ln -sf /bin/bash /bin/sh
 
 RUN /usr/bin/installSSHClient
@@ -45,5 +41,18 @@ RUN apt-get update --fix-missing -y && \
     apt-get install apparmor-profiles -y
 
 RUN /usr/bin/generateSelfSignedCert
+
+#
+# Need some tests here to make sure
+# the build is successful and that
+# our requirements are satisfied.
+#
+RUN which ssh
+RUN which openssl
+RUN which curl
+RUN which wget
+
+# This is so everyone knows we're happy.
+RUN echo " "; echo "------";echo "*** Build passes ***";echo " "; echo "------";echo " "
 
 CMD ["/bin/bash"]
