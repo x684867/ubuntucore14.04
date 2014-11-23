@@ -14,12 +14,12 @@ Parameters
 
 To Do:
 ------
-(1) Configure AppArmor.
-(2) Add Better Logging.
-
+   * Devise a closed internal PKI for TLS activity.
 
 ChangeList:
 -----------
+23 Nov 2014: Added post-build tests just to be sure things work.
+23 Nov 2014: Optimized build flow.  Made DEBIAN_FRONTEND persistent.
 31 Oct 2014: Added SSH client packages
 31 Oct 2014: Created /usr/bin/generateSelfSigned script as part of image.
 31 Oct 2014: Install apparmor profiles.
