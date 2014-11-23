@@ -62,7 +62,6 @@ RUN /usr/bin/generateSelfSignedCert
 RUN which openssl
 RUN which curl
 RUN which wget
-RUN for i in ${BANNED_USERS}; do id $i &>/dev/null || exit 1; done
 
 
 # This is so everyone knows we're happy.
