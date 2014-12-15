@@ -20,6 +20,7 @@ ENV BANNED_USERS "games news irc backup"
 #
 
 RUN \
+    echo "C.UTF-8" > /etc/default/locale
     dpkg-divert --local --rename --add /sbin/initctl && \
     ln -sf /usr/bin/true /sbin/initctl && \
     ln -sf /usr/bin/udev.sh /etc/init.d/udev && \
